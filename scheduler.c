@@ -18,12 +18,12 @@ typedef struct {
 
 #define NUM_THREADS 6
 Thread threads[NUM_THREADS] = {
-  {50,1,0},
-  {25,1,0},
-  {12,1,0},
-  {8,1,0},
-  {4,1,0},
-  {1,1,0},
+  {50, 1, 0},
+  {25, 1, 0},
+  {12, 1, 0},
+  {8, 1, 0},
+  {4, 1, 0},
+  {1, 1, 0},
 };
 
 Thread *schedule_lottery(Thread * threads) {
@@ -87,7 +87,7 @@ int main() {
   const unsigned int ticks = 100000;
   srand(time(NULL));
 
-  // Lottery tests   
+  // Lottery tests 
   for (unsigned time = 0; time < ticks; time++) {
     Thread *next_thread = schedule_lottery(threads);
 
@@ -100,7 +100,8 @@ int main() {
     }
 
     for (int i = 0; i < NUM_THREADS; i++) {
-      if (&threads[i] != next_thread) threads[i].state = RUNNABLE;
+      if (&threads[i] != next_thread)
+        threads[i].state = RUNNABLE;
     }
   }
 
@@ -143,7 +144,8 @@ int main() {
     }
 
     for (int i = 0; i < NUM_THREADS; i++) {
-      if (&threads[i] != next_thread) threads[i].state = RUNNABLE;
+      if (&threads[i] != next_thread)
+        threads[i].state = RUNNABLE;
     }
   }
 
