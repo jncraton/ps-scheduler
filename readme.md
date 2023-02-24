@@ -17,8 +17,8 @@ make test
 Implementation Notes
 --------------------
 
-The goal of the scheduler is allocate runtime to threads proportional to their weights. Threads in test harness have the following properties:
+The goal of the scheduler is allocate runtime to threads proportional to their weights. Threads in test the harness have the following properties:
 
 - Threads have weights, but they have no deadlines or priorities that might be found in real-time systems
 - All threads start as runnable
-- After running, a thread has a 1% of moving to the `WAITING` state for exactly 1 tick
+- After running, a thread has a 1% probability of moving to the `WAITING` state for exactly 1 tick
