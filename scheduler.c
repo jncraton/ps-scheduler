@@ -96,7 +96,7 @@ int main() {
     int thread_num = (next_thread - threads);
 
     if (time < DEBUG_TICKS) {
-      printf("Thread %d ran for 1 tick (%d work completed)\n", thread_num, next_thread->accumulated_runtime);
+      printf("Lottery: Thread %d ran for 1 tick (%d work completed)\n", thread_num, next_thread->accumulated_runtime);
     }
 
     for (int i = 0; i < NUM_THREADS; i++) {
@@ -107,7 +107,7 @@ int main() {
 
   for (int i = 0; i < NUM_THREADS; i++) {
     int error = threads[i].accumulated_runtime - ((ticks * threads[i].weight) / 100.0);
-    printf("Thread %d: Ran for %d ticks (off by %d)\n", i, threads[i].accumulated_runtime, error);
+    printf("Lottery: Thread %d: Ran for %d ticks (off by %d)\n", i, threads[i].accumulated_runtime, error);
     assert(error < 500 && error > -500);
   }
 
@@ -117,11 +117,11 @@ int main() {
   }
   Thread *next_thread = schedule_lottery(threads);
   if (next_thread != NULL) {
-    printf("Scheduler does not return NULL when nothing is runnable.\n");
+    printf("Lottery: Scheduler does not return NULL when nothing is runnable.\n");
     exit(1);
   }
 
-  printf("Lottery scheduler probably works correctly.\n");
+  printf("Lottery: Scheduler probably works correctly.\n");
 
   // Reset
 
@@ -140,7 +140,7 @@ int main() {
     int thread_num = (next_thread - threads);
 
     if (time < DEBUG_TICKS) {
-      printf("Thread %d ran for 1 tick (%d work completed)\n", thread_num, next_thread->accumulated_runtime);
+      printf("WFQ: Thread %d ran for 1 tick (%d work completed)\n", thread_num, next_thread->accumulated_runtime);
     }
 
     for (int i = 0; i < NUM_THREADS; i++) {
@@ -151,7 +151,7 @@ int main() {
 
   for (int i = 0; i < NUM_THREADS; i++) {
     int error = threads[i].accumulated_runtime - ((ticks * threads[i].weight) / 100.0);
-    printf("Thread %d: Ran for %d ticks (off by %d)\n", i, threads[i].accumulated_runtime, error);
+    printf("WFQ: Thread %d: Ran for %d ticks (off by %d)\n", i, threads[i].accumulated_runtime, error);
     assert(error == 0);
   }
 
@@ -161,11 +161,11 @@ int main() {
   }
   next_thread = schedule_wfq(threads);
   if (next_thread != NULL) {
-    printf("Scheduler does not return NULL when nothing is runnable.\n");
+    printf("WFQ: Scheduler does not return NULL when nothing is runnable.\n");
     exit(1);
   }
 
-  printf("WFQ scheduler works correctly.\n");
+  printf("WFQ: Scheduler works correctly.\n");
 
   printf("Tests complete.\n");
 
